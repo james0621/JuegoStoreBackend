@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Component
 @Table(name = "videojuego")
-public class VideoJuego {
+public class Juego {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,7 @@ public class VideoJuego {
 	private String tecnologia;
 	private Double precioVenta;
 	private Double precioAlquiler;
+	private Long cantidad;
 	
 	
 	public Long getId() {
@@ -70,7 +71,7 @@ public class VideoJuego {
 	public String getTecnologia() {
 		return tecnologia;
 	}
-	public void setConsolas(String tecnologia) {
+	public void setTecnologia(String tecnologia) {
 		this.tecnologia = tecnologia;
 	}
 	public Double getPrecioVenta() {
@@ -85,6 +86,11 @@ public class VideoJuego {
 	public void setPrecioAlquiler(Double precioAlquiler) {
 		this.precioAlquiler = precioAlquiler;
 	}
-	
+	public Long getCantidad() {
+		return cantidad;
+	}
+	public void setCantidad(Long cantidad) {
+		this.cantidad = cantidad;
+	}
 	
 }

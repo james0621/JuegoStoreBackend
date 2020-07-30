@@ -28,7 +28,7 @@ public class Factura {
 	
 	@OneToOne(fetch=FetchType.LAZY,optional=false)
 	@JoinColumn(name="ID_VIDEOJUEGO")
-	private VideoJuego videoJuego;
+	private Juego juego;
 	
 	private Date fechaVencimiento;
 	
@@ -46,11 +46,11 @@ public class Factura {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public VideoJuego getVideoJuego() {
-		return videoJuego;
+	public Juego getJuego() {
+		return juego;
 	}
-	public void setVideoJuego(VideoJuego videoJuego) {
-		this.videoJuego = videoJuego;
+	public void setJuego(Juego juego) {
+		this.juego = juego;
 	}
 	public Date getFechaVencimiento() {
 		return fechaVencimiento;

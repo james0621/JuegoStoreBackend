@@ -20,7 +20,7 @@ public class Protagonista {
 	
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name="ID_VIDEOJUEGO")
-	private VideoJuego videoJuego;
+	private Juego juego;
 	
 	public Long getId() {
 		return id;
@@ -34,11 +34,11 @@ public class Protagonista {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public VideoJuego getVideoJuego() {
-		return videoJuego;
+	public Juego getJuego() {
+		return juego;
 	}
-	public void setVideoJuego(VideoJuego videoJuego) {
-		this.videoJuego = videoJuego;
+	public void setJuego(Juego juego) {
+		this.juego = juego;
 	}
 	
 	

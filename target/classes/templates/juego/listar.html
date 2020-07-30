@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http//:www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Juegos</title>
+</head>
+<body>
+	<a th:ref="@/nuevo">Nuevo</a>
+	<table>
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>Nombre</th>
+				<th>Productor</th>
+				<th>Tecnologia</th>
+				<th>Precio Venta</th>
+				<th>Precio Alquiler</th>
+				<th>Cantidad Disponible</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="juego:${juegos}">
+				<td th:text="${juego.id}"></td>
+				<td th:text="${juego.nombre}"></td>
+				<td th:text="${juego.productor}"></td>
+				<td th:text="${juego.tecnologia}"></td>
+				<td th:text="${juego.precioVenta}"></td>
+				<td th:text="${juego.precioAlquiler}"></td>
+				<td th:text="${juego.cantidad}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
