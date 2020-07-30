@@ -6,7 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
 @Table(name = "cliente")
 public class Cliente {
 	
@@ -16,6 +19,8 @@ public class Cliente {
 	private Long documento;
 	private String nombre;
 	private String apellido;
+	private Long telefono;
+	private String email;
 	private Long edad;
 	
 	public Long getId() {
@@ -47,6 +52,18 @@ public class Cliente {
 	}
 	public void setEdad(Long edad) {
 		this.edad = edad;
+	}
+	public Long getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(Long telefono) {
+		this.telefono = telefono;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

@@ -2,13 +2,18 @@ package com.videojuego.app.modelo;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
 @Table(name = "videojuego")
 public class VideoJuego {
 	
@@ -17,10 +22,11 @@ public class VideoJuego {
 	private Long id;
 	private String nombre;
 	private Long año;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "videoJuego")
 	private List<Protagonista> protagonistas;
 	private String director;
 	private String productor;
-	private List<Consola> consolas;
+	private String tecnologia;
 	private Double precioVenta;
 	private Double precioAlquiler;
 	
@@ -61,11 +67,11 @@ public class VideoJuego {
 	public void setProductor(String productor) {
 		this.productor = productor;
 	}
-	public List<Consola> getConsolas() {
-		return consolas;
+	public String getTecnologia() {
+		return tecnologia;
 	}
-	public void setConsolas(List<Consola> consolas) {
-		this.consolas = consolas;
+	public void setConsolas(String tecnologia) {
+		this.tecnologia = tecnologia;
 	}
 	public Double getPrecioVenta() {
 		return precioVenta;
