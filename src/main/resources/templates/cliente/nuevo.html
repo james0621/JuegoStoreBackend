@@ -5,8 +5,8 @@
 <title>Inicio</title>
 </head>
 <body>
-	<form th:action="@{/save}" th:object="${cliente}" method="post">
-		
+	<form th:action="@{guardar}" th:object="${cliente}" method="post">
+		<input type="hidden" id="id" name="id" th:value="*{id}">
 		<div>
 		<label for="documento">No. Documento</label>
 			<div>
@@ -37,21 +37,21 @@
 		<div>
 		<label for="email">Email</label>
 			<div>
-				<input type="email" id="email" th:field="${cliente.email}">
+				<input type="email" id="email" th:field="*{email}">
 			</div> 
 		</div>
 		
 		<div>
-		<label for="edad">Edad</label>
+		<label for="fechaNacimiento">Fecha nacimiento</label>
 			<div>
-				<input type="text" id="edad" th:field="*{edad}">
+				<input type="date" id="fechaNacimiento" th:field="*{fechaNacimiento}">
 			</div> 
 		</div>
 		
 		
 		<div>
 			<div>
-				<input type="submit" value="Registrar">
+				<input type="submit" value="Guardar">
 			</div>
 		</div>
 		

@@ -1,29 +1,25 @@
 package com.videojuego.app.modelo;
 
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-@Table(name = "videojuego")
+@Table(name="juego")
 public class Juego {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
-	private Long año;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "videoJuego")
-	private List<Protagonista> protagonistas;
+	private Long anio;
+	private String protagonista;
 	private String director;
 	private String productor;
 	private String tecnologia;
@@ -44,17 +40,17 @@ public class Juego {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Long getAño() {
-		return año;
+	public Long getAnio() {
+		return anio;
 	}
-	public void setAño(Long año) {
-		this.año = año;
+	public void setAnio(Long anio) {
+		this.anio = anio;
 	}
-	public List<Protagonista> getProtagonistas() {
-		return protagonistas;
+	public String getProtagonista() {
+		return protagonista;
 	}
-	public void setProtagonistas(List<Protagonista> protagonistas) {
-		this.protagonistas = protagonistas;
+	public void setProtagonista(String protagonista) {
+		this.protagonista = protagonista;
 	}
 	public String getDirector() {
 		return director;

@@ -24,7 +24,7 @@ public class JuegoService implements IjuegoService{
 
 	@Override
 	public Optional<Juego> listarId(Long id) {
-		return null;
+		return data.findById(id);
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class JuegoService implements IjuegoService{
 			resp = 1;
 		}
 			
-		return 0;
+		return resp;
 	}
 
 	@Override

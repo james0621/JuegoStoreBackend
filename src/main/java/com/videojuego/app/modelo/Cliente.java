@@ -1,27 +1,36 @@
 package com.videojuego.app.modelo;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.stereotype.Component;
+
 
 @Entity
-@Component
-@Table(name = "cliente")
 public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotNull(message="Debe ingresar docuemnto de identificación")
 	private Long documento;
+	
+	@NotEmpty
 	private String nombre;
+	
+	@NotEmpty
 	private String apellido;
 	private Long telefono;
 	private String email;
-	private Long edad;
+	
+	@NotNull
+	private Date fechaNacimiento;
 	
 	public Long getId() {
 		return id;
@@ -47,12 +56,6 @@ public class Cliente {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public Long getEdad() {
-		return edad;
-	}
-	public void setEdad(Long edad) {
-		this.edad = edad;
-	}
 	public Long getTelefono() {
 		return telefono;
 	}
@@ -65,7 +68,12 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
 	
 	
 }
