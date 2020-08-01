@@ -39,7 +39,7 @@ public class ControladorFactura {
 	@PostMapping("/guardar")
 	public String guardar(@Valid Factura factura, Model model) {
 		service.guardar(factura);
-		return "redirect:/factura/listar";
+		return "redirect:/factura/listarFactura";
 	}
 	
 	@GetMapping("/editar/{id}")
@@ -52,7 +52,7 @@ public class ControladorFactura {
 	@PostMapping("/actualizar")
 	public String actualizar(@Valid Factura factura, Model model) {
 		service.guardar(factura);
-		return "redirect:/factura/listar";
+		return "redirect:/factura/listarFactura";
 	}
 	
 }

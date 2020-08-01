@@ -27,10 +27,12 @@ public class Factura {
 	private Cliente cliente;
 	
 	@OneToOne(fetch=FetchType.LAZY,optional=false)
-	@JoinColumn(name="ID_VIDEOJUEGO")
+	@JoinColumn(name="ID_JUEGO")
 	private Juego juego;
 	
 	private Date fechaVencimiento;
+	
+	private Date fechaRegistro;
 	
 	private Date fechaGarantia;
 	
@@ -63,6 +65,12 @@ public class Factura {
 	}
 	public void setFechaGarantia(Date fechaGarantia) {
 		this.fechaGarantia = fechaGarantia;
+	}
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
 	}
 	
 	

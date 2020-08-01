@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Factura Nueva</title>
+</head>
+<body>
+	<h2>Nueva Factura</h2>
+	<form th:action="@{guardar}" th:object="${juego}" method="post">
+		<div>
+		<label for="documento">Nombre</label>
+			<div>
+				<input type="text" id="nombre" th:field="*{nombre}">
+			</div> 
+		</div>
+		
+		<div>
+		<label for="anio">Año</label>
+			<div>
+				<input type="text" id="anio" th:field="*{anio}">
+			</div> 
+		</div>
+		
+		<div>
+		<label for="protagonista">Protagonista</label>
+			<div>
+				<input type="text" id="protagonista" th:field="*{protagonista}">
+			</div> 
+		</div>
+		
+		<div>
+		<label for="director">Director</label>
+			<div>
+				<input type="text" id="director" th:field="*{director}">
+			</div> 
+		</div>
+		
+		<div>
+		<label for="productor">Productor</label>
+			<div>
+				<input type="text" id="productor" th:field="*{productor}">
+			</div> 
+		</div>
+		
+		<div>
+		<label for="tecnologia">Tecnologia</label>
+			<div>
+				<input type="text" id="tecnologia" th:field="*{tecnologia}">
+			</div> 
+		</div>
+		
+		<div>
+		<label for="precioVenta">Precio Venta</label>
+			<div>
+				<input type="text" id="precioVenta" th:field="*{precioVenta}">
+			</div> 
+		</div>
+		
+		<div>
+		<label for="precioAlquiler">Precio Alquiler</label>
+			<div>
+				<input type="text" id="precioAlquiler" th:field="*{precioAlquiler}">
+			</div> 
+		</div>
+		
+		<div>
+		<label for="cantidad">Cantidad Disponible</label>
+			<div>
+				<input type="text" id="cantidad" th:field="*{cantidad}">
+			</div> 
+		</div>
+		
+		
+		<div>
+			<div>
+				<input type="submit" value="Guardar">
+			</div>
+		</div>
+	</form>
+</body>
+</html>

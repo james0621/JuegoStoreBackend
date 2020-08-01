@@ -7,5 +7,5 @@ import com.videojuego.app.modelo.Factura;
 
 @Repository
 public interface IFactura extends CrudRepository<Factura, Long>{
-
+	
 }

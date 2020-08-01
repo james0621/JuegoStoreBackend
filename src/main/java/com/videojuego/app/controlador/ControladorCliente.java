@@ -4,25 +4,26 @@ package com.videojuego.app.controlador;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.videojuego.app.interfaceService.IclienteService;
 import com.videojuego.app.modelo.Cliente;
 
-@Controller
+@CrossOrigin(origins = "http://localhost:4200",maxAge = 3600)
+@RestController
 @RequestMapping("/cliente")
 public class ControladorCliente {
 	
@@ -37,42 +38,30 @@ public class ControladorCliente {
 		
 	}
 	
-	@GetMapping("/nuevo")
-	public String nuevo(Model model) {
-		model.addAttribute("cliente",new Cliente());
-		return "cliente/nuevo";
+	@GetMapping
+	public List<Cliente> listar(){
+		return service.listar();
 	}
 	
-	@PostMapping("/guardar")
-	public String guardar(@Valid Cliente cliente, Model model) {
-		service.save(cliente);
-		return "redirect:/cliente/listar";
+	@PostMapping
+	public Cliente guardar(@RequestBody Cliente cliente) {
+		return service.save(cliente);
 	}
 	
-	@GetMapping("/listar")
-	public String listar(Model model) {
-		List<Cliente> clientes = service.listar();
-		model.addAttribute("clientes", clientes);
-		return "cliente/listar";
+	@GetMapping(path = {"/{id}"})
+	public Cliente buscarPorId(@PathVariable Long id) {
+		return service.buscarPorId(id);
 	}
 	
-	@GetMapping("/editar/{id}")
-	public String editar(@PathVariable Long id,Model model) {
-		Optional<Cliente> cliente = service.listarId(id);
-		model.addAttribute("cliente", cliente.get());
-		return "cliente/editar";
+	@PutMapping(path={"/{id}"})
+	public Cliente editar(@RequestBody Cliente cliente,@PathVariable Long id) {
+		cliente.setId(id);
+		return service.save(cliente);
 	}
 	
-	@PostMapping("/actualizar")
-	public String actualizar(@Valid Cliente cliente, Model model) {
-		service.save(cliente);
-		return "redirect:/cliente/listar";
-	}
-	
-	@GetMapping("/eliminar/{id}")
-	public String eliminar(@PathVariable Long id,Model model) {
-		service.delete(id);;
-		return "redirect:/cliente/listar";
+	@DeleteMapping(path={"/{id}"})
+	public Cliente delete(@PathVariable Long id) {
+		return service.delete(id);
 	}
 	
 }

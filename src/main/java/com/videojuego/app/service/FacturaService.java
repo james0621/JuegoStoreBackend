@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.videojuego.app.interfaceService.IfacturaService;
 import com.videojuego.app.interfaces.IFactura;
 import com.videojuego.app.modelo.Factura;
 
+@Service
 public class FacturaService implements IfacturaService{
 
 	@Autowired

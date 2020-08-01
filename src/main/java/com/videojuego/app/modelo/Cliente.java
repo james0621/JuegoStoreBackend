@@ -1,6 +1,5 @@
 package com.videojuego.app.modelo;
 
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +17,7 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull(message="Debe ingresar docuemnto de identificación")
+	@NotNull(message="Debe ingresar documento de identificación")
 	private Long documento;
 	
 	@NotEmpty
@@ -30,7 +29,7 @@ public class Cliente {
 	private String email;
 	
 	@NotNull
-	private Date fechaNacimiento;
+	private String fechaNacimiento;
 	
 	public Long getId() {
 		return id;
@@ -68,10 +67,10 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	

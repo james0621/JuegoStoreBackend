@@ -1,7 +1,6 @@
 package com.videojuego.app.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,28 +18,34 @@ public class ClienteService implements IclienteService{
 	@Override
 	public List<Cliente> listar() {
 		
-		return (List<Cliente>)data.findAll();
+		return data.findAll();
 	}
 
 	@Override
-	public Optional<Cliente> listarId(Long id) {
+	public Cliente buscarPorId(Long id) {
 		
 		return data.findById(id);
 	}
 
 	@Override
-	public int save(Cliente cliente) {
-		int resp= 0;
+	public Cliente save(Cliente cliente) {
 		Cliente c = data.save(cliente);
-		if(c != null) {
-			resp = 1;
-		}
-		return resp;
+		return c;
 	}
 
 	@Override
-	public void delete(Long id) {
-		data.deleteById(id);
+	public Cliente delete(Long id) {
+		Cliente c = data.findById(id);
+		if(c != null) {
+			data.delete(c);
+		}
+		return c;
+	}
+
+	@Override
+	public Cliente buscarClientePorDocumento(Long documento) {
+		
+		return data.buscarPorDocumento(documento);
 	}
 
 }
