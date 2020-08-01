@@ -1,7 +1,6 @@
 package com.videojuego.app.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,34 +14,33 @@ public class JuegoService implements IjuegoService{
 
 	@Autowired
 	private IJuego data;
-	
+
 	@Override
 	public List<Juego> listar() {
-		
-		return (List<Juego>)data.findAll();
+		return data.findAll();
 	}
 
 	@Override
-	public Optional<Juego> listarId(Long id) {
+	public Juego JuegoPorId(Long id) {
 		return data.findById(id);
 	}
 
 	@Override
-	public int save(Juego juego) {
-		int resp = 0;
-		Juego j = data.save(juego);
-		
-		if(j != null){
-			resp = 1;
-		}
-			
-		return resp;
+	public Juego save(Juego juego) {
+		return data.save(juego);
 	}
 
 	@Override
-	public void delete(Long id) {
-		data.deleteById(id);
+	public Juego delete(Long id) {
+		Juego j = data.findById(id);
+		if(j != null) {
+			data.delete(j);
+		}
+		
+		return data.delete(j);
 		
 	}
+	
+	
 
 }

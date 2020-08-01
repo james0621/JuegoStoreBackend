@@ -1,11 +1,17 @@
 package com.videojuego.app.interfaces;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+
+
+import java.util.List;
+
+import org.springframework.data.repository.Repository;
 
 import com.videojuego.app.modelo.Juego;
 
-@Repository
-public interface IJuego extends CrudRepository<Juego, Long>{
-
+public interface IJuego extends Repository<Juego, Long>{
+	
+	List<Juego> findAll();
+	Juego findById(Long id);
+	Juego save(Juego juego);
+	Juego delete(Juego juego);
 }

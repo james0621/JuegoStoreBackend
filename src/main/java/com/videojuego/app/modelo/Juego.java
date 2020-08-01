@@ -23,7 +23,6 @@ public class Juego {
 	private String director;
 	private String productor;
 	private String tecnologia;
-	private Double precioVenta;
 	private Double precioAlquiler;
 	private Long cantidad;
 	
@@ -69,12 +68,6 @@ public class Juego {
 	}
 	public void setTecnologia(String tecnologia) {
 		this.tecnologia = tecnologia;
-	}
-	public Double getPrecioVenta() {
-		return precioVenta;
-	}
-	public void setPrecioVenta(Double precioVenta) {
-		this.precioVenta = precioVenta;
 	}
 	public Double getPrecioAlquiler() {
 		return precioAlquiler;
