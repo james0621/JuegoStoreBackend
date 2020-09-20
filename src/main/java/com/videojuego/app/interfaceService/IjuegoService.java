@@ -10,4 +10,6 @@ public interface IjuegoService {
 	public Juego JuegoPorId(Long id);
 	public Juego save(Juego juego);
 	public Juego delete(Long id);
+	public List<Juego> buscarPorNombre(String termino);
+	public int actualizarCantidad(Long id);
 }

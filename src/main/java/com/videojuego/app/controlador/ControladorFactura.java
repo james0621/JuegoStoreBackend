@@ -1,58 +1,75 @@
 package com.videojuego.app.controlador;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.videojuego.app.interfaceService.IclienteService;
 import com.videojuego.app.interfaceService.IfacturaService;
+import com.videojuego.app.interfaceService.IjuegoService;
+import com.videojuego.app.modelo.Cliente;
 import com.videojuego.app.modelo.Factura;
+import com.videojuego.app.modelo.Juego;
 
-@Controller
+@CrossOrigin(origins = "http://localhost:4200",maxAge = 3600)
+@RestController
 @RequestMapping("/factura")
 public class ControladorFactura {
 	
 	@Autowired
 	private IfacturaService service;
 	
-	@GetMapping("/listar")
-	public String listar(Model model) {
-		List<Factura> facturas = service.listar();
-		model.addAttribute("facturas",facturas);
-		return "factura/listarFactura";
+	@Autowired
+	private IjuegoService serviceJuego;
+	
+	@Autowired
+	private IclienteService serviceCliente;
+	
+	@GetMapping
+	public List<Factura> listar(){
+		return service.listar();
 	}
 	
-	@GetMapping("/nuevo")
-	public String nuevo(Model model) {
-		model.addAttribute("factura", new Factura());
-		return "factura/nuevaFactura";
+	@PostMapping
+	public Factura guardar(@RequestBody Factura factura) {
+		serviceJuego.actualizarCantidad(factura.getJuego().getId());
+		return service.guardar(factura);
 	}
 	
-	@PostMapping("/guardar")
-	public String guardar(@Valid Factura factura, Model model) {
-		service.guardar(factura);
-		return "redirect:/factura/listarFactura";
+	@GetMapping(path ={"/id"})
+	public Factura buscarPorId(@PathVariable Long id) {
+		return service.buscarPorId(id);
 	}
 	
-	@GetMapping("/editar/{id}")
-	public String editar(@PathVariable Long id, Model model) {
-		Optional<Factura> factura = service.buscarPorId(id);
-		model.addAttribute("factura", factura);
-		return "factura/editar";
+	@PutMapping(path= {"/id"})
+	public Factura editar(@RequestBody Factura factura,@PathVariable Long id) {
+		factura.setId(id);
+		return service.guardar(factura);
 	}
 	
-	@PostMapping("/actualizar")
-	public String actualizar(@Valid Factura factura, Model model) {
-		service.guardar(factura);
-		return "redirect:/factura/listarFactura";
+	@DeleteMapping(path = {"/id"})
+	public Factura eliminar(@PathVariable Long id) {
+		return service.eliminar(id);
 	}
 	
+	@GetMapping("/buscarJuego")
+	public List<Juego> listarPorNombre(@RequestParam(name="termino") String termino){
+		return serviceJuego.buscarPorNombre(termino);
+	}
+	
+	@GetMapping("/buscarCliente")
+	public Cliente buscarCliente(@RequestParam(name="documento") Long documento){
+		return serviceCliente.buscarClientePorDocumento(documento);
+	}
 }
+

@@ -1,11 +1,16 @@
 package com.videojuego.app.interfaces;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+import org.springframework.data.repository.Repository;
 
 import com.videojuego.app.modelo.Factura;
 
-@Repository
-public interface IFactura extends CrudRepository<Factura, Long>{
-	
+
+public interface IFactura extends Repository<Factura, Long>{
+	List<Factura> findAll();
+	Factura findById(Long id);
+	Factura save(Factura factura);
+	Factura delete(Factura factura);
 }

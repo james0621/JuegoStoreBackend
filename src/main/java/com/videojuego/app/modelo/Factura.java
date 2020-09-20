@@ -8,7 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -22,11 +23,11 @@ public class Factura {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne(fetch=FetchType.LAZY,optional=false)
+	@ManyToOne(fetch=FetchType.LAZY,optional=false)
 	@JoinColumn(name="ID_CLIENTE")
 	private Cliente cliente;
 	
-	@OneToOne(fetch=FetchType.LAZY,optional=false)
+	@ManyToOne(fetch=FetchType.LAZY,optional=false)
 	@JoinColumn(name="ID_JUEGO")
 	private Juego juego;
 	
@@ -34,7 +35,12 @@ public class Factura {
 	
 	private Date fechaRegistro;
 	
-	private Date fechaGarantia;
+	@PrePersist
+	private void prePersist() {
+		fechaRegistro = new Date();
+	}
+
+	
 	
 	public Long getId() {
 		return id;
@@ -59,12 +65,6 @@ public class Factura {
 	}
 	public void setFechaVencimiento(Date fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
-	}
-	public Date getFechaGarantia() {
-		return fechaGarantia;
-	}
-	public void setFechaGarantia(Date fechaGarantia) {
-		this.fechaGarantia = fechaGarantia;
 	}
 	public Date getFechaRegistro() {
 		return fechaRegistro;

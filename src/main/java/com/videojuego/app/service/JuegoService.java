@@ -2,6 +2,8 @@ package com.videojuego.app.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,17 @@ public class JuegoService implements IjuegoService{
 		
 		return data.delete(j);
 		
+	}
+
+	@Override
+	public List<Juego> buscarPorNombre(String termino) {
+		return data.buscarPorNombre(termino);
+	}
+
+	@Override
+	@Transactional
+	public int actualizarCantidad(Long id) {
+		return data.actualizarCantidad(id);
 	}
 	
 	
