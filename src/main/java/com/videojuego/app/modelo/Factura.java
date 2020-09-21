@@ -35,6 +35,10 @@ public class Factura {
 	
 	private Date fechaRegistro;
 	
+	private Date fechaEntrega;
+	
+	private Boolean entregado;
+	
 	@PrePersist
 	private void prePersist() {
 		fechaRegistro = new Date();
@@ -72,7 +76,17 @@ public class Factura {
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
+	public Date getFechaEntrega() {
+		return fechaEntrega;
+	}
+	public void setFechaEntrega(Date fechaEntrega) {
+		this.fechaEntrega = fechaEntrega;
+	}
+	public Boolean getEntregado() {
+		return entregado;
+	}
+	public void setEntregado(Boolean entregado) {
+		this.entregado = entregado;
+	}
 	
-	
-
 }
